@@ -1,10 +1,19 @@
+import React from "react";
 import video from "../data/video.js";
 
 function App() {
   console.log("Here's your data:", video);
+  //need state for views
+  //need state for votes, taken from data file, updated with <button callback in Votes component
+  //need state for comments (if we add remove button or filters), taken from data file, rendered in Comments component
+
+  //Setter function for views
+  //Setter function for votes
+  //Setter function for comments
+
 
   return (
-    <div className="App">
+    <div className="App"> 
       <iframe
         width="919"
         height="525"
@@ -14,6 +23,7 @@ function App() {
         title="Thinking in React"
       />
     </div>
+  /*figure out where we want to stick component calls*/
   );
 }
 
