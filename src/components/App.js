@@ -5,29 +5,23 @@ import Metadata from "./Metadata.js";
 import Votes from "./Votes.js";
 
 function App() {
-  console.log(video.views)
-  const [currentViews, setCurrentViews] = useState(video.views)  //need state for views
+  const [currentViews] = useState(video.views + 1)  //need API skills to store new value of value, upon load a new view is added to the data file # for views
   const [upvotes, setUpvotes] = useState(video.upvotes)//need state for upvotes, taken from data file, updated with <button callback in upvotes component
   const [downvotes, setDownvotes] = useState(video.downvotes)
   // const [comments, setComments] = useState(video.comments)//need state for comments (if we add remove button or filters), taken from data file, rendered in Comments component
 
-  function viewIncrementer() {  //Setter function for views
-    const newView = 1;
-    setCurrentViews([...currentViews + newView])
+    
+  function addOneUpVote() { //Setter function for upvotes
+    return setUpvotes(preUpvotes => preUpvotes + 1)
   }
   
-  function addOneUpVote(oneUpVote) { //Setter function for upvotes
-    setUpvotes([...upvotes + oneUpVote])
-  }
-  
-  function addOneDownVote(oneDownVote) { //Setter function for upvotes
-    setDownvotes([...downvotes + oneDownVote])
+  function addOneDownVote() { //Setter function for upvotes
+    return setDownvotes(preDownVotes => preDownVotes + 1)
   }
   
   
-  //include   and upload date
   return (
-    <div className="App"> 
+    <div className="App" > 
       <iframe
         width="919"
         height="525"
@@ -37,13 +31,14 @@ function App() {
         key={video.title}
         title={video.title}
       />
-        <Metadata addedView={viewIncrementer} uploadDate={video.createdAt} />
+      <h1>{video.title}</h1>
+        <Metadata addedView={currentViews} uploadDate={video.createdAt} />
         <Votes 
           handleUpvotes={addOneUpVote} 
           currentUpvotes={upvotes} 
           handleDownvotes={addOneDownVote}
-          currentDownvotes={downvotes} /*component, setter callback function sent down as a prop.  Move this comp down in to return (*/ /> 
-        <CommentList commentObjs={video.comments}/*Setter function for comments*/ />
+          currentDownvotes={downvotes} /> 
+        <CommentList commentObjs={video.comments} />
       </div>
   );
 }

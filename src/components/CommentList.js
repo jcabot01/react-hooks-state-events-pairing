@@ -5,22 +5,19 @@ function CommentList( {commentObjs} ) {
   const [showComments, setShowComments] = useState(true)
 
   //deconstructor
-  const commentList = commentObjs.map((comment) => (
+  const usersAndCommentsList = commentObjs.map((comment) => (
     <Comment 
-      key={comment.title}
+      key={comment.user}
       username={comment.user}
       comment={comment.comment}
     />
-  ))
+  ));
   
-  //calculate number of comment objects, return length, send to comments header
-  function numberOfComments(commentObjs) {
-    let result = commentObjs.length
-    return result;
-  }
+  //calculate number of comment objects, return length, send to comments header====commentObjs.length
+ 
 
   function handleClick() {
-    setShowComments((showComments) => !showComments)
+    return setShowComments((showComments) => !showComments)
   }
 
 
@@ -43,9 +40,9 @@ function CommentList( {commentObjs} ) {
           {showComments ? "Hide" : "Show"} Comments
       </button>
       <div className="comments-header">
-        <h2>{numberOfComments} Comments</h2>
+        <h2>{commentObjs.length} Comments</h2>
       </div>
-      {commentList}
+      {showComments ? usersAndCommentsList : null}
     </div>
   );
 }

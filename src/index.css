@@ -23,6 +23,11 @@ body {
 
 /* vote */
 
-/* individual-comment-container */
+.individual-comment-container {
+  margin-bottom: 10px;
+}
 
-/* username bold, bigger font size*/
+.username {
+  font-size: x-large;
+  font-weight: bold;
+}
